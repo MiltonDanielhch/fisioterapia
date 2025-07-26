@@ -15,7 +15,9 @@ chmod -R ug+rw /app/storage /app/bootstrap/cache
 cd /app
 
 # 3) Ejecutar instalación o migraciones según estado
-php artisan template:install -r || true   # -r resetea si ya hay datos
+php artisan template:install -r || true   # -r resetea si ya hay datosp
+php artisan optimize:clear || true
+
 # (O usa migrate --force si prefieres evitar el reset)
 # php artisan migrate --force || true
 
