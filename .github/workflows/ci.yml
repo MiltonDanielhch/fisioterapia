@@ -24,6 +24,19 @@ jobs:
     - name: Install dependencies
       run: composer install --no-dev --optimize-autoloader
 
+    - name: Setup environment
+      run: |
+        # Usar .env.example si existe, sino crear uno básico
+        if [ -f ".env.example" ]; then
+          cp .env.example .env
+        else
+          echo "APP_NAME=CI" > .env
+          echo "APP_ENV=testing" >> .env
+          echo "APP_KEY=" >> .env
+          echo "DB_CONNECTION=sqlite" >> .env
+          echo "DB_DATABASE=:memory:" >> .env
+        fi
+
     - name: Generate key
       run: php artisan key:generate
 
